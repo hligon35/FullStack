@@ -27,7 +27,8 @@ router.post("/users", async(req, res) => {
     
     try{
         await newUser.save()
-        res.status(201) //created
+        console.log(newUser)
+        res.sendStatus(201) //created
     }
     catch(err){
         res.status(400).send(err)
