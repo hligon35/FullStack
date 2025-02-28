@@ -15,7 +15,7 @@ const router = express.Router();
 const secret = "supersecret"
 
 // Creating a new user
-router.post("/users", async(req, res) => {
+router.post("/user", async(req, res) => {
     if(!req.body.username || !req.body.password){
         res.status(400).json({error: "Missing username and password!"})
     }
