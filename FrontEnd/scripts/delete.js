@@ -1,4 +1,4 @@
-const { get } = require("http")
+// const { get } = require("node:http")
 
 addEventListener('DOMContentLoaded', async function() {
     document.querySelector("#deleteBtn").addEventListener("click", deleteSong)

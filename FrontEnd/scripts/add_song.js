@@ -9,7 +9,7 @@ async function addSong() {
     const song = {
         title: document.querySelector("#title").value,
         artist: document.querySelector("#artist").value,
-        releaseDate: document.querySelector("#releaseDate").value,
+        releaseDate: document.querySelector("#released").value,
         popularity: document.querySelector("#popularity").value,
         genre: document.querySelector("#genre").value ? document.querySelector("#genre").value.split(",") : [],
         username : localStorage.getItem("uname")

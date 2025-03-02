@@ -1,4 +1,9 @@
-const mongoose = require('mongoose')
-mongoose.connect("mongodb+srv://sdev255:password@songdb.fih00.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser: true})
+const mongoose = require('mongoose');
 
-module.exports = mongoose
+mongoose.connect("mongodb+srv://bemily1:7skVyX1Ljg64JqA0@testcluster.xh7xg.mongodb.net/SongDB?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
+
+module.exports = mongoose;
