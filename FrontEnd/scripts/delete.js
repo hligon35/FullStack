@@ -3,14 +3,16 @@ addEventListener('DOMContentLoaded', async function() {
 })
 
 async function getAllSongs() {
-    const response = await fetch("http://localhost:3000/api/songs")
+    const response = await fetch("http://localhost:3000/api/songs/")
     if(response.ok){
         const songs = await response.json()
         let html = ""
         for(let song of songs){
             html += `<option value="${song.id}">${song.title}</option>`
         }
-        document.querySelector("#songDropDown").innerHTML = html
+        document.querySelector("#songDropDown").innerHTML = html;
+    } else {
+        console.error("Failed to fetch songs");
     }
 }
 

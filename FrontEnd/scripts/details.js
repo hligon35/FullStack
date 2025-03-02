@@ -17,6 +17,7 @@ addEventListener('DOMContentLoaded', async function() {
         <h3>Artist - ${song.artist} </h3>
         <p>Release Date - ${song.releaseDate} </p>
         <p>Popularity - ${song.popularity} </p>
-    `
+    `,
+    
     document.querySelector("div").innerHTML = html
 })
