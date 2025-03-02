@@ -1,6 +1,5 @@
 addEventListener('DOMContentLoaded', async function() {
-    document.querySelector("#delete").addEventListener("click", deleteSong)
-    getAllSongs()
+    document.querySelector("#deleteBtn").addEventListener("click", deleteSong)
 })
 
 async function getAllSongs() {
@@ -11,13 +10,13 @@ async function getAllSongs() {
         for(let song of songs){
             html += `<option value="${song.id}">${song.title}</option>`
         }
-        document.querySelector("#songDrpoDown").innerHTML = html
+        document.querySelector("#songDropDown").innerHTML = html
     }
 }
 
 async function deleteSong() {
     //get songID of selected song
-    const songID = document.querySelector("#songDrpoDown option:checked").value
+    const songID = document.querySelector("#songDropDown option:checked").value
     const response = await fetch("http://localhost:3000/api/songs/" + songID, {
         method: "DELETE"
     });

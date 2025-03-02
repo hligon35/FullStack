@@ -8,7 +8,7 @@ addEventListener('DOMContentLoaded', async function() {
     console.log(song)
 
     let heading = ""
-    heading += '${song.title}'
+    heading += `${song.title}`
     document.querySelector("h1").innerHTML = heading
 
     let html = ""
