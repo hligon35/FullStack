@@ -35,6 +35,64 @@ router.post("/user", async(req, res) => {
     }
 })
 
+//Authenticate or login
+// post request - creating a new 'session'
+router.post("/auth", async(req, res) =>{
+        if(!req.body.username || !req.body.password){
+        res.status(400).json({error: "Missing username or password!"})
+        return 
+    }
+    // try to find user in the database, see if it matches
+    // await finding user
+    let user = await User.findOne({username : req.body.username})
+    
+    if(!user){
+            res.status(401).json({error: "Bad username"})
+        }
+        // check if password matches
+        else{
+            if(user.password != req.body.password){
+                res.status(401).json({error: "Bad password"})
+            }
+            // successful login
+            else{
+                // create token encoded w/ jwt library, send back username (IMPORTANT!!!)
+                // auth = 0 no authorization, auth = 1 
+                username2 = user.username
+                const token = jwt.encode({username: user.username}, secret)
+                const auth = 1
+
+                // respond with token
+                res.json({
+                    username2,
+                    token:token,
+                    auth:auth
+                })
+            }
+        }
+    })     
+
+// check status of user w/ valid token, see if it matches front end token
+router.get("/status", async(req, res) =>{
+    // check if token is valid
+    if(!req.headers["x-auth"]){
+        return res.status(401).json({error: "Missing X-Auth"})
+    }
+
+    // if x-auth contains token, decode it
+    const token = req.headers["x-auth"]
+    try{
+        const decoded = jwt.decode(token,secret)
+        
+        // send back all user info
+        let users = User.find({}, "username status")
+        res.json(users)
+    }
+    catch(ex){
+        res.status(401).json({error: "invalid jwt"})
+    }
+})
+
 //Get list of all songs in a database
 router.get("/songs", async(req, res) =>{
     try{
