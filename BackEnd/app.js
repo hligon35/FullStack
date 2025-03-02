@@ -1,5 +1,5 @@
 const express = require("express");
-const Song = require("./models/song");
+const Song = require("./models/songs");
 var cors = require('cors')
 // const bodyParser = require("body-parser")
 const jwt =require ("jwt-simple")
@@ -15,7 +15,7 @@ const router = express.Router();
 const secret = "supersecret"
 
 // Creating a new user
-router.post("/user", async(req, res) => {
+router.post("/users", async(req, res) => {
     if(!req.body.username || !req.body.password){
         res.status(400).json({error: "Missing username and password!"})
     }
@@ -96,7 +96,7 @@ router.get("/status", async(req, res) =>{
 //Get list of all songs in a database
 router.get("/songs", async(req, res) =>{
     try{
-        //Find all songs in the database. Sen objects. Then log them out.
+        //Find all songs in the database. Send objects. Then log them out.
         const songs = await Song.find({})
         res.send(songs)
         console.log(songs)
@@ -139,7 +139,7 @@ router.put("/songs/:id", async(req, res) =>{
     //first find and update song front end wants to update
     try{
         const song = req.body
-        await song.updateOne({_id:req.params.id}, song)
+        await Song.updateOne({_id:req.params.id}, song)
         console.log(song)
         res.sendStatus(204)
 
@@ -166,4 +166,6 @@ router.delete("/songs/:id", async(req, res) =>{
 
 app.use("/api", router);
 
-app.listen(3000);
+var port = process.env.PORT || 3000;
+
+app.listen(port);

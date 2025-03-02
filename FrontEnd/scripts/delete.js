@@ -1,5 +1,8 @@
+const { get } = require("http")
+
 addEventListener('DOMContentLoaded', async function() {
     document.querySelector("#deleteBtn").addEventListener("click", deleteSong)
+    getAllSongs()
 })
 
 async function getAllSongs() {
@@ -8,7 +11,7 @@ async function getAllSongs() {
         const songs = await response.json()
         let html = ""
         for(let song of songs){
-            html += `<option value="${song.id}">${song.title}</option>`
+            html += `<option value="${song._id}">${song.title}</option>`
         }
         document.querySelector("#songDropDown").innerHTML = html;
     } else {
