@@ -18,7 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
             email: email
         };
 
-        localStorage.setItem('userLoginData', JSON.stringify(userData));
+        // Get existing users from local storage
+        let users = JSON.parse(localStorage.getItem('userLoginData')) || [];
+
+        // Add new user to the array
+        users.push(userData);
+
+        // Save updated users array to local storage
+        localStorage.setItem('userLoginData', JSON.stringify(users));
 
         alert('Registration successful!');
         form.reset();

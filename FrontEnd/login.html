@@ -16,11 +16,13 @@
     <form id="login" autocomplete="off">
         <div>
         <label for="username">Username:</label>
-        <input type="text" id="username">
+        <input type="text" id="username" autocomplete="off">
         </div>
         <div>
         <label for="password">Password:</label>
-        <input type="password" id="password">
+        <input type="password" id="password" autocomplete="off">
+        <label for="showPassword">Show Password:</label>
+        <input type="checkbox" id="showPassword" onclick="togglePassword()" autocomplete="off">
         </div>
         <button id="loginBtn" type="button">Login</button>
         <p id="errorMsg"></p>
