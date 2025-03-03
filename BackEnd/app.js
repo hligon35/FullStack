@@ -1,6 +1,6 @@
 const express = require("express");
 const Song = require("./models/songs");
-var cors = require('cors')
+var cors = require("cors")
 // const bodyParser = require("body-parser")
 const jwt =require ("jwt-simple")
 const User = require("./models/users")
